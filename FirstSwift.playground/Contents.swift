@@ -20,60 +20,6 @@ var forty = "Forty "
 var fifty = "Fifty"
 forty + fifty
 
-//***precedence
-thirty + ten / twenty + twenty
-//recursive descent
-//truncation with integers
-
-//***associativity
-18 / 3 / 2
-//ltr
-
-forty.uppercased()
-//How do you think you would make a string lowercased?
-
-//"The price of the book is $" + ten
-
-"The price of the book is $\(ten)"
-
-//Conditional Logic
-let bookPrice = ten
-if bookPrice > 15 {
-    print("We need to save up for this book")
-} else {
-    print("We can buy this book right now")
-}
-
-//switch bookPrice{
-//case 6:
-//    print("this book costs 6 dollars")
-//}
-
-//range operator
-
-switch bookPrice {
-case 0...6:
-    print("this book is dirt cheap")
-case 6...10:
-    print("This book is pretty cheap")
-default:
-    print("Better be a good book")
-}
-
-let lattePrice = 4
-if bookPrice >= lattePrice {
-    print("This book costs more than a latte in the Loop")
-}
-
-let myMoney = 10
-let enoughMoney = bookPrice + lattePrice <= myMoney
-//What type is enoughMoney? -> Boolean
-
-//How do we print that we want to purchase both the book and the latte if we have enough money?
-if enoughMoney {
-    print("BUY EVERYTHING")
-}
-
 //arrays
 var books = [
     "The One Device",
@@ -102,10 +48,70 @@ stringToInteger["one"]
 //What is the capitalization convention in Swift?
 
 for (key, value) in integerToString {
-    print("You wouldn't typically use a dictionary for somethign you have to loop over")
+    print("You wouldn't typically use a dictionary for something you have to loop over")
 }
 
+//Conventions
+//1. Casing
+//2. Parentheses
+//Example: Conditional Logic
+let bookPrice = ten
+if bookPrice > 15 {
+    print("We need to save up for this book")
+} else {
+    print("We can buy this book right now")
+}
 
+//Paradigm: Imperative or Functional
+let mapped = ["one", "two", "three"].map {
+    $0.uppercased()
+}
+
+//Collaboration
+class Book {
+    var author: String?
+}
+
+class Nonfiction: Book {
+    var subject: String?
+    
+    init(author: String?, subject: String?) {
+        super.init()
+        
+        self.author = author
+        self.subject = subject
+    }
+}
+
+let objectDesign = Nonfiction(
+    author: "Rebecca Wirfs-Brock",
+    subject: "programming"
+)
+
+protocol Indexable {
+    func index() -> [Int:String]
+}
+
+class Reference: Nonfiction, Indexable {
+    func index() -> [Int : String] {
+        // implement indexing the book
+        return [:]
+    }
+}
+
+let refactoringToPatterns = Reference(
+    author: "Martin Fowler",
+    subject: "programming"
+)
+
+extension Reference {
+    func levelOfConfusing() -> Int {
+        //rate how confusing this book is to read from 1-5
+        return 1
+    }
+}
+
+//Handling Null
 //Optionals
 //How do we deal with null values in Python or Java?
 var favoriteBook: String?
@@ -124,3 +130,14 @@ print("My favorite book is " + favoriteBook!)
 if let confirmedValue = favoriteBook {
     print("My favorite book is " + confirmedValue)
 }
+
+//Precedence
+thirty + ten / twenty + twenty
+//recursive descent
+//truncation with integers
+
+//Associativity
+18 / 3 / 2
+//ltr
+
+//What does Swift Compile To?
